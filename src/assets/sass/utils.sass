@@ -1,0 +1,359 @@
+html
+  /* For IE */
+  scrollbar-face-color: var(--neutral-400) !important
+  scrollbar-shadow-color: var(--neutral-200) !important
+  scrollbar-highlight-color: var(--neutral-200) !important
+
+/* For Chrome */
+::-webkit-scrollbar
+  width: 10px !important
+  
+::-webkit-scrollbar-track
+  background: var(--neutral-200) !important
+  border-radius: 10px !important
+
+::-webkit-scrollbar-thumb
+  background: var(--neutral-200) !important
+  border-radius: 10px !important
+
+::-webkit-scrollbar-thumb:hover
+  background: var(--neutral-400) !important
+    
+/* hidden scrollbar  */
+.hidden-scroll
+    -ms-overflow-style: none !important /* IE 11 */
+    scrollbar-width: none !important /* Firefox, Chrome 121*/
+.hidden-scroll::-webkit-scrollbar
+    width: 0 !important
+    display: none !important
+.hidden-scroll::-webkit-scrollbar-track
+    background: transparent !important
+.hidden-scroll::-webkit-scrollbar-thumb
+    background: transparent !important
+.hidden-scroll::-webkit-scrollbar-thumb:hover
+    background: transparent !important
+
+/* overflow classes*/
+.overflow-y-scroll
+    overflow-y: auto !important
+.overflow-y-unset
+    overflow-y: unset
+.overflow-x-scroll
+    overflow-x: scroll !important
+    overflow-y: hidden !important
+    @media only screen and (min-width: 992px)
+        overflow-x: unset !important
+        overflow-y: hidden !important
+.overflow-x-auto
+    overflow-x: auto
+
+.primary-scroll
+    border-radius: 2px !important
+.primary-scroll::-webkit-scrollbar
+    width: 2px !important
+    border-radius: 2px !important
+
+.primary-scroll::-webkit-scrollbar-track
+    background: var(--neutral-200) !important
+    border-radius: 2px !important
+
+.primary-scroll::-webkit-scrollbar-thumb
+    background: var(--neutral-200) !important
+    border: 3px solid var(--neutral-200)
+    border-radius: 2px !important
+
+/* text align*/
+.text-center
+    text-align: center !important
+.text-right
+    text-align: right !important
+.text-left
+    text-align: left !important
+.text-underline
+    text-decoration: underline
+.text-decoration-none
+    text-decoration: none
+
+/* Radius classes */
+.no-radius
+    border-radius: 0 !important
+.radius-2
+    border-radius: 2px !important
+.radius-4
+    border-radius: 4px !important
+.radius-6
+    border-radius: 6px !important
+.radius-8
+    border-radius: 8px !important
+.radius-10
+    border-radius: 10px !important
+.radius-12
+    border-radius: 12px !important
+.radius-14
+    border-radius: 14px !important
+.radius-16
+    border-radius: 16px !important
+.radius-18
+    border-radius: 18px !important
+.radius-20
+    border-radius: 20px !important
+.radius-full
+    border-radius: 999999px !important
+
+/* height classes*/
+.h-100vh
+    height: 100vh
+.h-100
+    height: 100%
+.h-80
+    height: 80%
+.h-auto
+    height: auto !important
+/* width */
+.w-100vw
+    max-width: 100vw !important
+    min-width: 100% !important
+    display: table // to listen for the min and max width properties and the div is block by default with means it won`t resized
+.w-auto
+    width: auto !important
+
+/* box shadow */
+.shadow-1
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15)
+.shadow-2
+    box-shadow: 0 6.25px 20px rgba(0, 0, 0, 0.125)
+.shadow-3
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.11)
+.shadow-4
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12)
+.shadow-5
+    box-shadow: 0 15px 60px rgba(0, 0, 0, 0.12)
+.shadow-6
+    box-shadow: 0 17.5px 70px rgba(0, 0, 0, 0.12)
+.shadow-7
+    box-shadow: 0 35px 90px rgba(0, 0, 0, 0.135)
+
+/* cursor classes*/
+.cursor-pointer
+    cursor: pointer !important
+.cursor-no-drop
+    cursor: no-drop !important
+.cursor-context-menu
+    cursor: context-menu !important
+
+/* opacity classes*/
+.opacity-0
+    opacity: 0
+.opacity-01
+    opacity: 0.1
+.opacity-02
+    opacity: 0.2
+.opacity-03
+    opacity: 0.3
+.opacity-04
+    opacity: 0.4
+.opacity-05
+    opacity: 0.5
+.opacity-06
+    opacity: 0.6
+.opacity-07
+    opacity: 0.7
+.opacity-08
+    opacity: 0.6
+.opacity-09
+    opacity: 0.9
+.opacity-1
+    opacity: 1
+
+.string-content-container
+    text-overflow: ellipsis
+    overflow: hidden
+.nowrap-white-space
+    white-space: nowrap !important
+
+.tabs-container
+    width: fit-content
+    max-width: 100%
+    border-bottom: 1px solid var(--neutral-200)
+
+.p-relative
+    position: relative
+
+.p-absolute
+    position: absolute
+
+.word-break
+    word-break: break-word
+.word-break-all
+    word-break: break-all
+
+.word-break-all
+    word-break: break-all
+
+.pre-wrap
+    white-space: pre-wrap
+
+.transform-180
+    transform: rotate(180deg) !important
+.transform-360
+    transform: rotate(360deg) !important
+.transform-45
+    transform: rotate(45deg) !important
+
+.shimmer-loader
+    animation: shimmer 2s infinite linear
+    background: linear-gradient(to right, var(--neutral-50) 4%, var(--neutral-100) 25%, var(--neutral-50) 36%)
+    background-size: 1000px 100%
+
+.fixed-cell
+    position: sticky
+    left: 0
+    background: var(--base-white) !important
+    box-shadow: 1px 10px 35px rgba(0, 0, 0, 0.1)
+    z-index: 2
+    [dir = rtl] &
+        right: 0
+
+.text-italic
+    font-style: italic
+
+.text-capitalize
+    text-transform: capitalize
+
+.text-lowercase
+    text-transform: lowercase
+
+.text-uppercase
+    text-transform: uppercase
+.disabled
+    cursor: no-drop !important
+    opacity: .5 !important
+.h-1px
+    height: 1px
+
+.text-line-clamp
+    overflow: hidden
+    display: -webkit-box
+    -webkit-line-clamp: 1
+    -webkit-box-orient: vertical
+
+.text-ellipsis
+    text-overflow: ellipsis
+    overflow: hidden
+    white-space: nowrap
+
+.clickable-cell:hover,
+.clickable-entity:hover
+    color: var(--primary-500)
+
+.min-w-100
+    min-width: 100%
+
+.overlay
+  position: absolute
+  height: 100%
+  width: 100%
+  top: 0
+  left: 0
+  background: var(--base-white-05)
+  z-index: 3
+
+.list-style-position-inside
+    list-style-position: inside
+
+/* ------------- */
+.fit-content
+    width: fit-content
+/*  to use tooltip
+
+ 1. add [ base-tooltip ] class to your div
+ 2. add data-tooltip attribute with value you want to display */
+
+.base-tooltip
+    position: relative
+    cursor: pointer
+
+    &:hover
+        &::after
+            opacity: 1
+            visibility: visible
+
+    &::after
+        content: attr(data-tooltip)
+        position: absolute
+        top: 20px
+        right: 0
+        display: block
+        width: max-content
+        background-color: var(--neutral-600)
+        color: var(--base-white)
+        padding: 5px 8px
+        border-radius: 3px
+        font-size: 12px
+        opacity: 0
+        visibility: hidden
+        transition: all .3s ease-in-out
+
+        [dir=rtl] &
+            right: auto
+            left: 0
+
+/* ------------- */
+
+/* ---- helper classes ---- */
+.outline-none
+    outline: none
+
+.border-none
+    border: none
+
+.border-with-current-color
+    border: 1px solid currentColor
+
+.user-select-none
+    user-select: none
+/* ---- helper classes ---- */
+
+/* ---- border classes ---- */
+
+// when using these border classes you should know that the border color will be the same as the text color
+// or inherited color from the parent element
+
+.border
+    border: 1px solid currentColor
+.border-b
+    border-bottom: 1px solid currentColor
+.border-t
+    border-top: 1px solid currentColor
+.border-l
+    border-left: 1px solid currentColor
+.border-r
+    border-right: 1px solid currentColor
+
+/* ---- border classes ---- */
+
+.modal-overlay
+    width: 100%
+    height: 100vh
+    position: fixed
+    top: 0
+    bottom: 0
+    right: 0
+    left: 0
+    z-index: 10
+    background: var(--base-white-05)
+
+.divider
+    height: 1px
+    width: 100%
+    background-color: var(--info-50)
+
+.btn
+    border: none !important
+    outline: none !important
+.text-start
+    text-align: start
+.text-end
+    text-align: end
+.relative
+    position: relative

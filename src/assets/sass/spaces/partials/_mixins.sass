@@ -1,0 +1,100 @@
+@mixin generateSpaces($num)
+  @for $i from 1 through $num
+    @if $num > 0
+      $num: $num - 3
+
+      .gap-#{$num}
+        gap: #{$num}px
+
+      .p-#{$num}
+        padding: #{$num}px !important
+
+      .p-t-#{$num}
+        padding-top: #{$num}px
+
+      .p-b-#{$num}
+        padding-bottom: #{$num}px
+
+      .p-r-#{$num}
+        padding-right: #{$num}px
+
+        [dir=rtl] &
+          padding-right: unset
+          padding-left: #{$num}px
+
+      .p-l-#{$num}
+        padding-left: #{$num}px
+
+        [dir=rtl] &
+          padding-left: unset
+          padding-right: #{$num}px
+
+      .p-x-#{$num}
+        padding-right: #{$num}px
+        padding-left: #{$num}px
+
+      .p-y-#{$num}
+        padding-top: #{$num}px
+        padding-bottom: #{$num}px
+
+      .m-#{$num}
+        margin: #{$num}px
+
+      .m-t-#{$num}
+        margin-top: #{$num}px
+
+      .m-b-#{$num}
+        margin-bottom: #{$num}px
+
+      .m-r-#{$num}
+        margin-right: #{$num}px
+
+        [dir=rtl] &
+          margin-right: unset
+          margin-left: #{$num}px
+
+      .m-l-#{$num}
+        margin-left: #{$num}px
+
+        [dir=rtl] &
+          margin-left: unset
+          margin-right: #{$num}px
+
+      .m-x-#{$num}
+        margin-right: #{$num}px
+        margin-left: #{$num}px
+
+      .m-y-#{$num}
+        margin-top: #{$num}px
+        margin-bottom: #{$num}px
+    .m-auto
+      margin: auto
+
+    .m-x-auto
+      margin-left: auto
+      margin-right: auto
+
+    .m-y-auto
+      margin-top: auto
+      margin-bottom: auto
+
+    .m-l-auto
+      margin-left: auto
+      [dir=rtl] &
+        margin-right: auto
+        margin-left: unset
+
+    .m-r-auto
+      margin-right: auto
+      [dir=rtl] &
+        margin-right: unset
+        margin-left: auto
+
+    .m-t-auto
+      margin-top: auto
+
+    .m-b-auto
+      margin-bottom: auto
+
+
+

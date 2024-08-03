@@ -1,0 +1,81 @@
+=btn-filled($principal-color,$hover-color,$disabled-color,$active-color)
+  background: $principal-color
+  border: 1px solid $principal-color
+  color: #ffff
+  cursor: pointer
+  &:hover
+    background: $hover-color
+    border: 1px solid $hover-color
+    cursor: pointer
+  &:disabled
+    background: $disabled-color
+    border: solid $disabled-color
+    cursor: no-drop
+  &:active
+    background: $active-color
+
+=btn-bordered($principal-color,$hover-color,$disabled-color,$active-color)
+  border: 1px solid $principal-color
+  background: transparent
+  color: $principal-color
+  cursor: pointer
+  &:hover
+    border: 1px solid $hover-color
+    background: rgba($principal-color, 10%) !important
+    color: $hover-color
+    cursor: pointer
+  &:disabled
+    color: $disabled-color
+    border: solid $disabled-color
+    background: transparent
+    cursor: no-drop
+  &:active
+    border: 1px solid $active-color
+    outline: none !important
+
+=btn-borderless($principal-color,$hover-color,$disabled-color,$active-color)
+  border: transparent
+  background: transparent
+  color: $principal-color
+  cursor: pointer
+  &:hover
+    border: transparent
+    background: transparent
+    color: $hover-color
+    cursor: pointer
+  &:disabled
+    color: $disabled-color
+    border: transparent
+    background: transparent
+    cursor: no-drop
+  &:active
+    border: none !important
+
+=btn-size($size)
+  @if ($size == large)
+    height: 56px
+    border-radius: 8px
+    padding: 14px 18px
+    outline: none !important
+    display: flex
+    align-items: center
+    justify-content: center
+    @include action-large
+  @else if ($size == miduem)
+    height: 48px
+    padding: 12px 16px 12px 16px
+    border-radius: 8px
+    outline: none !important
+    display: flex
+    align-items: center
+    justify-content: center
+    @include action-medium
+  @else
+    height: 36px
+    border-radius: 6px
+    padding: 8px 12px 8px 12px
+    outline: none !important
+    display: flex
+    align-items: center
+    justify-content: center
+    @include action-small

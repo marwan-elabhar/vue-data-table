@@ -1,0 +1,69 @@
+<script>
+  import mixin from "./mixin";
+
+  export default {
+    mixins: [mixin],
+
+    data() {
+      return {};
+    },
+    methods: {
+      getMonthName(monthIndex) {
+        const months = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
+        return months[monthIndex] || "Invalid month";
+      },
+      formatDate(value) {
+        if (this.cell.customDateFormat) {
+          return this.cell.customDateFormat(value);
+        }
+        if (
+          !this.cell.customDateFormat
+          && !this.cell.dateLocale
+          && !this.cell.dateOptions
+        ) {
+          return this.getDefaultDateFormat(value);
+        }
+
+        const date = new Date(value);
+
+        const formatter = new Intl.DateTimeFormat(
+          this.cell.dateLocale || "default",
+          this.cell.dateOptions,
+        );
+
+        return formatter.format(date);
+      },
+      getDefaultDateFormat(value) {
+        const date = new Date(value);
+        const offset = date.getTimezoneOffset();
+        const differenceInMinutes = 60000;
+        const localDate = new Date(date.getTime() + offset * differenceInMinutes);
+        return `${this.getMonthName(
+          localDate.getMonth(),
+        )} ${localDate.getDate()}, ${localDate.getFullYear()}`;
+      },
+    },
+  };
+</script>
+<template>
+  <span
+    v-if="record[cell.id]"
+    class="p-base-medium string-content-container"
+    :class="[cell.isClickable ? 'cursor-pointer clickable-cell' : '']"
+    @click="entityClicked($event)"
+  >{{ formatDate(record[cell.id]) }}</span>
+  <span v-else>---</span>
+</template>

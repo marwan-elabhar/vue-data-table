@@ -1,0 +1,288 @@
+@keyframes withdraw
+  0%
+    width: 100%
+
+  100%
+    width: 0%
+
+@keyframes animate-max-height
+  0%
+    max-height: 0
+
+  100%
+    max-height: 500px
+
+@keyframes fadeIn
+  from
+    opacity: 0
+
+  to
+    opacity: 1
+
+@keyframes fadeOut
+  from
+    opacity: 1
+
+  to
+    opacity: 0
+
+@keyframes fadeInDown
+  from
+    opacity: 0
+    -webkit-transform: translate3d(0, -100%, 0)
+    transform: translate3d(0, -100%, 0)
+
+  to
+    opacity: 1
+    -webkit-transform: translate3d(0, 0, 0)
+    transform: translate3d(0, 0, 0)
+
+@keyframes shimmer
+  0%
+    background-position: -1000px 0
+
+  100%
+    background-position: 1000px 0
+
+@keyframes rollIn
+  from
+    opacity: 0
+    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg)
+    transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg)
+
+  to
+    opacity: 1
+    -webkit-transform: translate3d(0, 0, 0)
+    transform: translate3d(0, 0, 0)
+
+@keyframes pulse
+  0%
+    box-shadow: 0 0 0 0 rgba(#CD0B19, 0.6)
+
+  70%
+    box-shadow: 0 0 0 6px rgba(#CD0B19, 0)
+
+  100%
+    box-shadow: 0 0 0 0 rgba(#CD0B19, 0)
+
+@-moz-keyframes rotate
+  from
+    -moz-transform: rotate(0deg)
+  to
+    -moz-transform: rotate(180deg)
+
+@-webkit-keyframes rotate
+  from
+    -moz-transform: rotate(0deg)
+  to
+    -webkit-transform: rotate(180deg)
+
+@keyframes rotate
+  from
+    -moz-transform: rotate(0deg)
+    transform: rotate(0deg)
+  to
+    -webkit-transform: rotate(180deg)
+    transform: rotate(180deg)
+
+@-moz-keyframes reverse-rotate
+  from
+    -moz-transform: rotate(180deg)
+  to
+    -moz-transform: rotate(360deg)
+
+@-webkit-keyframes reverse-rotate
+  from
+    -moz-transform: rotate(180deg)
+  to
+    -webkit-transform: rotate(360deg)
+
+@keyframes reverse-rotate
+  from
+    -moz-transform: rotate(180deg)
+    transform: rotate(180deg)
+  to
+    -webkit-transform: rotate(360deg)
+    transform: rotate(360deg)
+
+@keyframes ninty-degree-rotate
+  from
+    -moz-transform: rotate(0deg)
+    transform: rotate(0deg)
+  to
+    -webkit-transform: rotate(90deg)
+    transform: rotate(90deg)
+
+.animate-rotation
+  transform: rotate(180deg)
+  -webkit-animation: rotate .5s linear
+  -moz-animation: rotate .5s linear
+  animation: rotate .5s linear
+
+.animate-rotation-90
+  transform: rotate(90deg)
+  -webkit-animation: ninty-degree-rotate .5s linear
+  -moz-animation: ninty-degree-rotate .5s linear
+  animation: ninty-degree-rotate .5s linear
+.reverse-rotation
+  -webkit-animation: reverse-rotate .5s linear
+  -moz-animation: reverse-rotate .5s linear
+  animation: reverse-rotate .5s linear
+
+.rollIn-leave-active
+  animation: rollIn 1s
+
+.rollIn-enter-active
+  animation: rollIn 1s
+
+.fadeIn
+  -webkit-animation-name: fadeIn
+  animation: fadeIn 1s
+
+.fadeOut
+  -webkit-animation-name: fadeOut
+  animation: fadeOut 1s
+
+.animate-rotation
+  transform: rotate(180deg)
+  -webkit-animation: rotate .5s linear
+  -moz-animation: rotate .5s linear
+  animation: rotate .5s linear
+
+.reverse-rotation
+  -webkit-animation: reverse-rotate .5s linear
+  -moz-animation: reverse-rotate .5s linear
+  animation: reverse-rotate .5s linear
+
+.withdraw-leave-active
+  -webkit-animation: withdraw .7s !important
+  -ms-animation: withdraw .7s !important
+  -o-animation: withdraw .7s !important
+  -moz-animation: withdraw .7s !important
+  animation: withdraw .7s !important
+
+.withdraw-enter-active
+  -webkit-animation: withdraw .7s reverse !important
+  -ms-animation: withdraw .7s reverse !important
+  -o-animation: withdraw .7s reverse !important
+  -moz-animation: withdraw .7s reverse !important
+  animation: withdraw .7s reverse !important
+
+.animate-height-leave-active
+  -webkit-animation: animate-max-height .7s reverse
+  -ms-animation: animate-max-height .7s reverse
+  -o-animation: animate-max-height .7s reverse
+  -moz-animation: animate-max-height .7s reverse
+  animation: animate-max-height .7s reverse
+
+.animate-height-enter-active
+  -webkit-animation: animate-max-height .7s
+  -ms-animation: animate-max-height .7s
+  -o-animation: animate-max-height .7s
+  -moz-animation: animate-max-height .7s
+  animation: animate-max-height .7s
+
+.fade-in-leave-active
+  -webkit-animation: fade-in 1s
+  -ms-animation: fade-in 1s
+  -o-animation: fade-in 1s
+  -moz-animation: fade-in 1s
+  animation: fade-in 1s
+.fade-in-enter-active
+  -webkit-animation: fade-in 1s
+  -ms-animation: fade-in 1s
+  -o-animation: fade-in 1s
+  -moz-animation: fade-in 1s
+  animation: fade-in 1s
+
+.fade-enter-active, .fade-leave-active
+  -webkit-transition: opacity .5s
+  -ms-transition: opacity .5s
+  -o-transition: opacity .5s
+  -moz-transition: opacity .5s
+  transition: opacity .5s
+
+.fade-enter, .fade-leave-to
+  -webkit-opacity: 0
+  -ms-opacity: 0
+  -o-opacity: 0
+  -moz-opacity: 0
+  opacity: 0
+
+.fadeInDown-enter-active
+  animation: fadeInDown .5s
+.fadeInDown-leave-active
+  transition: all .2s ease-in-out
+.fadeInDown-enter,
+.fadeInDown-leave-to
+  transform: translateY(10px)
+  opacity: 0
+
+.fadeUp-enter-active
+  transition: all .2s ease-in-out
+.fadeUp-leave-active
+  transition: all .2s ease-in-out
+.fadeUp-enter,
+.fadeUp-leave-to
+  transform: translateY(10px)
+  opacity: 0
+
+.fade-enter-active,
+.fade-leave-active
+  transition: opacity .2s
+.fade-enter,
+.fade-leave-to
+  opacity: 0
+
+.slide-enter-active,
+.slide-leave-active
+  transition: all 0.75s ease-out
+
+.slide-enter-to
+  position: absolute
+  right: 0
+
+.slide-enter-from
+  position: absolute
+  right: -100%
+
+.slide-leave-to
+  position: absolute
+  left: -100%
+
+.slide-leave-from
+  position: absolute
+  left: 0
+
+.show-enter-active,
+.show-leave-enter
+  transform: translateX(0)
+  transition: all .3s linear
+
+.show-enter,
+.show-leave-to
+  transform: translateX(100%)
+
+.slide-fade-enter-active
+  transition: all 0.2s ease-out
+
+.slide-fade-leave-active
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1)
+
+.slide-fade-enter-from,
+.slide-fade-leave-to
+  transform: translateX(20px)
+  opacity: 0
+
+.slide-out-enter-active
+  transition: all .2s ease-out
+.slide-out-leave-active
+  transition: all .2s ease-out
+
+.slide-out-enter, .slide-out-leave-to 
+  transform: translateX(100%)
+  [dir=rtl] &
+    transform: translateX(-100%)
+
+
+

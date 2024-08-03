@@ -1,0 +1,35 @@
+// The border colors classes are generated inside the colors folder
+
+// Border width & position   
+@for $i from 1 through 4
+    .border-top-#{$i}
+        border-top: #{$i}px solid
+    .border-left-#{$i}
+        border-left: #{$i}px solid
+    .border-right-#{$i}
+        border-right: #{$i}px solid
+    .border-bottom-#{$i}
+        border-bottom: #{$i}px solid
+    .border-x-#{$i}
+        border-left: #{$i}px solid
+        border-right: #{$i}px solid
+    .border-y-#{$i}
+        border-top: #{$i}px solid
+        border-bottom: #{$i}px solid
+    .border-full-#{$i}
+        border: #{$i}px solid
+
+// Border style
+.border-solid
+    border-style: solid
+.border-dotted
+    border-style: dotted
+.border-dashed
+    border-style: dashed
+
+
+// other
+.border-transparent
+    border-color: transparent
+.border-none
+    border: none

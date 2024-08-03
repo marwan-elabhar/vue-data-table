@@ -1,0 +1,52 @@
+@import './variables.sass'
+$shared-colors-palette: (neutral: (25: $neutral-25,50: $neutral-50,100: $neutral-100,200: $neutral-200,300: $neutral-300,400: $neutral-400,500: $neutral-500,600: $neutral-600,700: $neutral-700,800: $neutral-800,900: $neutral-900),error: (25: $error-25,50: $error-50,100: $error-100,200: $error-200,300: $error-300,400: $error-400,500: $error-500,600: $error-600,700: $error-700,800: $error-800,900: $error-900),warning: (25: $warning-25,50: $warning-50,100: $warning-100,200: $warning-200,300: $warning-300,400: $warning-400,500: $warning-500,600: $warning-600,700: $warning-700,800: $warning-800,900: $warning-900),success: (25: $success-25,50: $success-50,100: $success-100,200: $success-200,300: $success-300,400: $success-400,500: $success-500,600: $success-600,700: $success-700,800: $success-800,900: $success-900),info: (25: $info-25,50: $info-50,100: $info-100,200: $info-200,300: $info-300,400: $info-400,500: $info-500,600: $info-600,700: $info-700,800: $info-800,900: $info-900),accent-1: (25: $accent-1-25,50: $accent-1-50,100: $accent-1-100,200: $accent-1-200,300: $accent-1-300,400: $accent-1-400,500: $accent-1-500,600: $accent-1-600,700: $accent-1-700,800: $accent-1-800,900: $accent-1-900),accent-2: (25: $accent-2-25,50: $accent-2-50,100: $accent-2-100,200: $accent-2-200,300: $accent-2-300,400: $accent-2-400,500: $accent-2-500,600: $accent-2-600,700: $accent-2-700,800: $accent-2-800,900: $accent-2-900),accent-3: (25: $accent-3-25,50: $accent-3-50,100: $accent-3-100,200: $accent-3-200,300: $accent-3-300,400: $accent-3-400,500: $accent-3-500,600: $accent-3-600,700: $accent-3-700,800: $accent-3-800,900: $accent-3-900),accent-4: (25: $accent-4-25,50: $accent-4-50,100: $accent-4-100,200: $accent-4-200,300: $accent-4-300,400: $accent-4-400,500: $accent-4-500,600: $accent-4-600,700: $accent-4-700,800: $accent-4-800,900: $accent-4-900),accent-5: (25: $accent-5-25,50: $accent-5-50,100: $accent-5-100,200: $accent-5-200,300: $accent-5-300,400: $accent-5-400,500: $accent-5-500,600: $accent-5-600,700: $accent-5-700,800: $accent-5-800,900: $accent-5-900))
+
+:root
+  @each $category, $colors in $shared-colors-palette
+    @each $level, $color in $colors
+      --#{$category}-#{$level}: #{$color}
+      --#{$category}-#{$level}-01: #{rgba($color, 0.1)}
+      --#{$category}-#{$level}-02: #{rgba($color, 0.2)}
+      --#{$category}-#{$level}-03: #{rgba($color, 0.3)}
+      --#{$category}-#{$level}-04: #{rgba($color, 0.4)}
+      --#{$category}-#{$level}-05: #{rgba($color, 0.5)}
+
+  // base colors
+  --base-white: #{$base-white}
+  --base-white-01: #{rgba($base-white, 0.1)}
+  --base-white-02: #{rgba($base-white, 0.2)}
+  --base-white-03: #{rgba($base-white, 0.3)}
+  --base-white-04: #{rgba($base-white, 0.4)}
+  --base-white-05: #{rgba($base-white, 0.5)}
+  --base-black: #{$base-black}
+  --base-black-01: #{rgba($base-black, 0.1)}
+  --base-black-02: #{rgba($base-black, 0.2)}
+  --base-black-03: #{rgba($base-black, 0.3)}
+  --base-black-04: #{rgba($base-black, 0.4)}
+  --base-black-05: #{rgba($base-black, 0.5)}
+
+@each $category, $colors in $shared-colors-palette
+  @each $level, $color in $colors
+    .text-#{$category}-#{$level}
+      color: $color
+
+    .bg-#{$category}-#{$level}
+      background-color: $color
+
+    .border-#{$category}-#{$level}
+      border-color: $color
+
+// base colors
+.text-base-white
+  color: $base-white
+.text-base-black
+  color: $base-black
+.border-base-black
+  border-color: $base-black
+
+.bg-base-white
+  background-color: $base-white
+.bg-base-black
+  background-color: $base-black
+.border-base-white
+  border-color: $base-white
