@@ -1,3 +1,6 @@
+import { defineAsyncComponent } from 'vue'
+import String from './body/cell-types/String.vue';
+
 const defaultOptions = {
   showHeader: true,
   hasCheckbox: false, // Used to show the row checkbox
@@ -12,32 +15,26 @@ const defaultOptions = {
 
 const cellTypes = {
   // Expected value: String
-  string: async () => importComponent({ componentName: "String" }),
+  string: defineAsyncComponent(() => import("./body/cell-types/String.vue")),
   // Expected value: String. Temporary solution for cell translation.
-  label: async () => importComponent({ componentName: "Label" }),
+  label: defineAsyncComponent(() => import("./body/cell-types/Label.vue")),
   // Expected value: String
-  date: async () => importComponent({ componentName: "Date" }),
+  date: defineAsyncComponent(() => import("./body/cell-types/Date.vue")),
   // Expected value: String
-  email: async () => importComponent({ componentName: "Email" }),
+  email: defineAsyncComponent(() => import("./body/cell-types/Email.vue")),
   // Expected value: String
-  image: async () => importComponent({ componentName: "Image" }),
+  image: defineAsyncComponent(() => import("./body/cell-types/Image.vue")),
   // Expected value: Object. Fields: value (required), countryFlag(optional)
-  phoneNumber: async () => importComponent({ componentName: "PhoneNumber" }),
+  phoneNumber: defineAsyncComponent(() => import("./body/cell-types/PhoneNumber.vue")),
   // Expected value: Array
-  list: async () => importComponent({ componentName: "List" }),
+  list: defineAsyncComponent(() => import("./body/cell-types/list/Index.vue")),
   // Expected value: Object. Fields: originalValue (required), currencyRate(required), prefix(optional), suffix(optional)
-  currency: async () => importComponent({ componentName: "Currency" }),
+  currency: defineAsyncComponent(() => import("./body/cell-types/Currency.vue")),
   // Expected value: String || Number
-  percentage: async () => importComponent({ componentName: "Percentage" }),
+  percentage: defineAsyncComponent(() => import("./body/cell-types/Percentage.vue")),
   // Expected value: String || Number
-  number: async () => importComponent({ componentName: "Number" }),
+  number: defineAsyncComponent(() => import("./body/cell-types/Number.vue")),
   component: null,
-}
-
-async function importComponent({ componentName }) {
-  const module = await import(`./body/cell-types/${componentName}.vue`);
-
-  return module.default;
 }
 
 const cellProperties = [
