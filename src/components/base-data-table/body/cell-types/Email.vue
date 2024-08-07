@@ -1,20 +1,37 @@
 <script>
-  import mixin from "./mixin";
 
-  export default {
-    mixins: [mixin],
-    data() {
-      return {};
+export default {
+  props: {
+    cell: {
+      required: true,
+      type: Object,
     },
-  };
+    record: {
+      required: true,
+      type: Object,
+    },
+    options: {
+      type: Object,
+      required: true,
+    },
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    entityClicked({ event }) {
+      if (!this.cell.isClickable) return;
+      this.$emit("entity-clicked", {
+        event,
+        actionId: this.cell.actionId,
+      });
+    },
+  },
+};
 </script>
 <template>
-  <a
-    v-if="record[cell.id]"
-    :href="`mailto:${record[cell.id]}`"
-    class="p-base-medium cursor-pointer clickable-cell string-content-container"
-    @click="entityClicked($event)"
-  >
+  <a v-if="record[cell.id]" :href="`mailto:${record[cell.id]}`"
+    class="p-base-medium cursor-pointer clickable-cell string-content-container" @click="entityClicked($event)">
     {{ record[cell.id] }}
   </a>
   <span v-else>---</span>

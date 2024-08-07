@@ -1,7 +1,8 @@
 <script>
+import DesktopRow from "./row/Desktop.vue"
   export default {
     components: {
-      DesktopRow: () => import("./row/Desktop.vue"),
+      DesktopRow,
       MobileRow: () => import("./row/Mobile.vue"),
     },
 

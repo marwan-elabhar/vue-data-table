@@ -1,51 +1,64 @@
 <script>
-  import mixin from "./mixin";
-  import Tooltip from "../../components/Tooltip.vue";
+import Tooltip from "../../components/Tooltip.vue";
 
-  export default {
-    components: { Tooltip },
-    mixins: [mixin],
+export default {
+  props: {
+    cell: {
+      required: true,
+      type: Object,
+    },
+    record: {
+      required: true,
+      type: Object,
+    },
+    options: {
+      type: Object,
+      required: true,
+    },
+  },
+  components: { Tooltip },
 
-    data() {
-      return {};
+  data() {
+    return {};
+  },
+  computed: {
+    isValidNumber() {
+      return typeof +this.cellValue === "number";
     },
-    computed: {
-      isValidNumber() {
-        return typeof +this.cellValue === "number";
-      },
-      showNumberTooltip() {
-        return (
-          (this.cell.notation === "compact" || !this.cell.notation)
-          && this.record[this.cell.id]
-          && this.record[this.cell.id] > 1000
-        );
-      },
+    showNumberTooltip() {
+      return (
+        (this.cell.notation === "compact" || !this.cell.notation)
+        && this.record[this.cell.id]
+        && this.record[this.cell.id] > 1000
+      );
     },
-  };
+  },
+  methods: {
+    entityClicked({ event }) {
+      if (!this.cell.isClickable) return;
+      this.$emit("entity-clicked", {
+        event,
+        actionId: this.cell.actionId,
+      });
+    },
+  }
+};
 </script>
 <template>
   <div class="w-100 d-flex align-items-center p-base-medium text-neutral-700">
-    <span
-      v-if="isValidNumber"
-      :class="[cell.isClickable ? 'cursor-pointer clickable-cell' : '']"
-      @click="entityClicked($event)"
-    >{{
-      $root.formatNumber({
-        number: record[cell.id],
-        notation: cell.notation || "compact",
-      })
-    }}</span>
-    <span v-else>---</span>
-    <Tooltip
-      v-if="showNumberTooltip"
-      class="m-x-3 m-t-3"
-      :tooltip-content="
+    <span v-if="isValidNumber" :class="[cell.isClickable ? 'cursor-pointer clickable-cell' : '']"
+      @click="entityClicked($event)">{{
         $root.formatNumber({
           number: record[cell.id],
-          notation: 'standard',
+          notation: cell.notation || "compact",
         })
-      "
-    />
+      }}</span>
+    <span v-else>---</span>
+    <Tooltip v-if="showNumberTooltip" class="m-x-3 m-t-3" :tooltip-content="$root.formatNumber({
+      number: record[cell.id],
+      notation: 'standard',
+    })
+      " />
   </div>
 </template>
 <style scoped lang='sass'>
