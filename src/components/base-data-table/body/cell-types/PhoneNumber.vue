@@ -1,19 +1,36 @@
 <script>
   import MissingContact from "../../assets/icons/MissingContact.vue";
-  import mixin from "./mixin";
 
   export default {
+    props: {
+    cell: {
+      required: true,
+      type: Object,
+    },
+    record: {
+      required: true,
+      type: Object,
+    },
+    options: {
+      type: Object,
+      required: true,
+    },
+  },
     components: {
       MissingContact,
     },
-    mixins: [mixin],
     data() {
       return {};
     },
 
     methods: {
-      entityClicked() {
-      },
+      entityClicked({ event }) {
+      if (!this.cell.isClickable) return;
+      this.$emit("entity-clicked", {
+        event,
+        actionId: this.cell.actionId,
+      });
+    },
     },
   };
 </script>
