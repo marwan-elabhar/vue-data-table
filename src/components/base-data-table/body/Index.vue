@@ -1,9 +1,11 @@
 <script>
 import DesktopRow from "./row/Desktop.vue"
+import MobileRow from "./row/Mobile.vue"
+
   export default {
     components: {
       DesktopRow,
-      MobileRow: () => import("./row/Mobile.vue"),
+      MobileRow
     },
 
     props: {
