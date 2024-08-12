@@ -1,5 +1,6 @@
 <script>
 import Tooltip from "../../components/Tooltip.vue";
+import { formatNumber } from "../../utils";
 
 export default {
   props: {
@@ -41,24 +42,23 @@ export default {
         actionId: this.cell.actionId,
       });
     },
+    formatValue({ notation }) {
+      return formatNumber({
+        number: this.record[this.cell.id],
+        notation,
+      })
+    }
   }
 };
 </script>
 <template>
   <div class="w-100 d-flex align-items-center p-base-medium text-neutral-700">
     <span v-if="isValidNumber" :class="[cell.isClickable ? 'cursor-pointer clickable-cell' : '']"
-      @click="entityClicked($event)">{{
-        $root.formatNumber({
-          number: record[cell.id],
-          notation: cell.notation || "compact",
-        })
+      @click="entityClicked($event)">{{ formatValue({ notation: cell.notation || 'compact' })
+
       }}</span>
     <span v-else>---</span>
-    <Tooltip v-if="showNumberTooltip" class="m-x-3 m-t-3" :tooltip-content="$root.formatNumber({
-      number: record[cell.id],
-      notation: 'standard',
-    })
-      " />
+    <Tooltip v-if="showNumberTooltip" class="m-x-3 m-t-3" :tooltip-content="formatValue({ notation: 'standard' })" />
   </div>
 </template>
 <style scoped lang='sass'>
