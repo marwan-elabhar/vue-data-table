@@ -1,5 +1,4 @@
 import { defineAsyncComponent } from 'vue'
-import String from './body/cell-types/String.vue';
 
 const defaultOptions = {
   showHeader: true,
@@ -16,8 +15,6 @@ const defaultOptions = {
 const cellTypes = {
   // Expected value: String
   string: defineAsyncComponent(() => import("./body/cell-types/String.vue")),
-  // Expected value: String. Temporary solution for cell translation.
-  label: defineAsyncComponent(() => import("./body/cell-types/Label.vue")),
   // Expected value: String
   date: defineAsyncComponent(() => import("./body/cell-types/Date.vue")),
   // Expected value: String
