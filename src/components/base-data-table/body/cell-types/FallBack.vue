@@ -25,7 +25,7 @@
 <template>
   <div class="d-flex align-items-baseline">
     <p class="p-base-medium">
-      {{ invalidCell }}
+      Invalid Cell
     </p>
     <div
       class="ml-1 p-relative cursor-pointer"
@@ -38,7 +38,7 @@
         class="bg-neutral-900 p-9 tooltip-position radius-8 p-small-medium text-base-white d-flex flex-wrap"
       >
         <p>
-          {{ validTypes }}
+          Valid types:
         </p>
         <p class="ml-1">
           {{ displayedTypes }}
