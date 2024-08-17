@@ -46,7 +46,7 @@ const cellProperties = [
     required: true,
   },
   {
-    name: "dataType", // Valid values: (string, label, date, email, image, phoneNumber, list, currency, percentage, number, component)
+    name: "dataType", // Valid values: (string, date, email, image, phoneNumber, list, currency, percentage, number, component)
     type: "string",
     required: true,
   },
