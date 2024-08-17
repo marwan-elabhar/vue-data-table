@@ -9,7 +9,6 @@ const defaultOptions = {
   isFirstColumnFixed: false,
   isLastColumnFixed: false,
   defaultCellMinWidth: "100px",
-  translationObject: "labels", // temp
 }
 
 const cellTypes = {
