@@ -54,6 +54,7 @@ export default {
   height: 66px
   border-radius: 40px
   margin: 0 5%
+  z-index: 2
   @media (max-width: 576px)
     width: 90%
     margin: 0 !important
