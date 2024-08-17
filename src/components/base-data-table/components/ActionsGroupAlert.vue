@@ -1,68 +1,46 @@
 <script>
-  export default {
-    props: {
-      actions: {
-        type: Array,
-        required: true,
-      },
+export default {
+  props: {
+    actions: {
+      type: Array,
+      required: true,
+    },
 
-      selectedRowsLength: {
-        type: Number,
-        required: true,
-      },
+    selectedRows: {
+      type: Array,
+      required: true,
     },
-    data() {
-      return {};
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    deselectAll() {
+      this.$emit("deselect-all");
     },
-    methods: {
-      entityClicked(event, action) {
-        this.$emit("entity-clicked", {
-          event,
-          entity: { actionId: action },
-        });
-      },
-
-      deselectAll() {
-        this.$emit("deselect-all");
-      },
-    },
-  };
+  },
+};
 </script>
 <template>
-  <div
-    class="shadow-7 p-y-24 p-x-42 alert-container d-flex align-items-center justify-content-between"
-  >
+  <div class="shadow-7 p-y-24 p-x-42 alert-container d-flex align-items-center justify-content-between">
     <div class="d-flex align-items-center">
       <span class="p-small-medium text-base-white m-r-6">{{
         selectedRowsLength
-      }}</span>
+        }}</span>
       <span class="p-small-medium selected-label">
-      Selected
+        Selected
       </span>
 
-      <button
-        name="deselect"
-        class="btn-md radius-6 p-x-12 p-y-8 text-primary-500 deselect-btn m-l-15 cursor-pointer"
-        @click="deselectAll"
-      >
+      <button name="deselect" class="btn-md radius-6 p-x-12 p-y-8 text-primary-500 deselect-btn m-l-15 cursor-pointer"
+        @click="deselectAll">
         <span>Deselect All</span>
       </button>
     </div>
 
     <div class="d-flex align-items-center">
-      <span
-        v-for="action in actions"
-        :key="action.id"
-        class="cursor-pointer bg-base-white text-primary-500 radius-4 btn-md radius-6 p-x-12 p-y-8 m-x-12"
-        @click="entityClicked($event, action.id)"
-      >
-        <component
-          :is="action.icon" v-if="action.icon"
-          class="m-r-3"
-        />
-        <span class="p-small-medium radius-6 action-name">{{
-          action.id
-        }}</span>
+      <span v-for="action in actions" :key="action.id" class="m-x-12">
+        <component :is="action.component" :selected-rows="selectedRows" class="m-r-3" />
+
       </span>
     </div>
   </div>
