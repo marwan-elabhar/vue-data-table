@@ -1,5 +1,5 @@
 <script>
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent } from 'vue'
 import Header from "./header/Index.vue";
 import Body from "./body/Index.vue";
 import Empty from "./states/Empty.vue";
@@ -68,7 +68,8 @@ export default {
       type: Boolean,
       default: false,
     },
-    /* actions: Array of objects, object format: {id: String, component: Instance of a component} */
+    /* actions: Array of objects, object format: {id: 'string' (required), label: 'string' (required),
+     icon: Instance of an Icon component (not required)} */
     actions: {
       type: Array,
       required: false,
@@ -76,10 +77,13 @@ export default {
       validator: (actions) => {
         let valid = true;
         actions.forEach((action) => {
+          const requiredKey = "id";
           const actionKeys = Object.keys(action);
-          if (!actionKeys.includes("id") || !actionKeys.includes("component")) {
+          if (!actionKeys.includes(requiredKey)) {
             valid = false;
-            console.error(`The id and component keys are required`);
+            /* eslint-disable */
+            console.error(`The ${requiredKey} key is required`);
+            /* eslint-enable */
           }
         });
         return valid;
@@ -95,6 +99,7 @@ export default {
     return {
       windowWidth: window.innerWidth,
       selectedRows: [],
+      tableWidth: "",
     };
   },
 
@@ -109,7 +114,19 @@ export default {
       return this.windowWidth < 768;
     },
     isSelectAllChecked() {
-      return this.content.length === this.selectedRows.length;
+      return !!((this.enabledContent.length) && (this.enabledContent.length === this.selectedRows.length));
+    },
+    enabledContent() {
+      return this.content.filter((el) => !el.disabled);
+    },
+    calculatedCellWidth() {
+      const definedWidths = this.cells.filter((cell) => cell.fixedWidth);
+      const definedWidthsSum = definedWidths.reduce(
+        (prev, el) => prev + el.fixedWidth,
+        0,
+      );
+      const remainingCells = this.cells.length - definedWidths.length;
+      return (this.tableWidth - definedWidthsSum) / remainingCells;
     },
     sortedCells() {
       const negativeOneOrderedCell = this.cells.find(
@@ -125,10 +142,28 @@ export default {
       if (!negativeOneOrderedCell) return [...orderedCells, ...unorderedCells];
       return [...orderedCells, ...unorderedCells, negativeOneOrderedCell];
     },
+    modifiedCells() {
+      return this.sortedCells.map((cell) => {
+        const modified = cell;
+        const style = {
+          width: modified.fixedWidth || this.calculatedCellWidth,
+          minWidth:
+            modified.fixedWidth
+            || modified.minWidth
+            || this.mergedOptions.defaultCellMinWidth,
+          maxWidth: this.getCellMaxWidth(cell),
+        };
+        return {
+          ...modified,
+          style,
+        };
+      });
+    },
   },
 
   mounted() {
     window.addEventListener("resize", this.onResize);
+    this.tableWidth = this.$refs.tableContainer.clientWidth;
   },
 
   beforeDestroy() {
@@ -138,27 +173,50 @@ export default {
   methods: {
     onResize() {
       this.windowWidth = window.innerWidth;
+      this.tableWidth = this.$refs.tableContainer.clientWidth;
     },
 
-    entityClicked({ event, entity }) {
+    getCellMaxWidth(cell) {
+      if (cell.fixedWidth) {
+        return cell.fixedWidth;
+      }
+
+      if (
+        this.calculatedCellWidth
+        > (cell.minWidth || this.mergedOptions.defaultCellMinWidth)
+      ) {
+        return this.calculatedCellWidth + 100;
+      }
+
+      if (cell.minWidth) {
+        return cell.minWidth + 100;
+      }
+
+      return this.mergedOptions.defaultCellMinWidth + 100;
+    },
+
+    entityClicked({ event, entity, params }) {
       this.$emit("entity-clicked", {
         event,
         entity,
+        params,
       });
     },
 
     deselectAll() {
       this.selectedRows = [];
-      this.$emit("update-selected-rows", { selectedRows: this.selectedRows });
+      this.$emit("update-selected-rows", { selectedRows: [] });
     },
 
     toggleSelectAll() {
-      if (this.selectedRows.length !== this.content.length) {
-        this.selectedRows = this.content.map((el) => el.id);
+      if (this.selectedRows.length !== this.enabledContent.length) {
+        this.selectedRows = this.enabledContent;
       } else {
         this.selectedRows = [];
       }
-      this.$emit("update-selected-rows", { selectedRows: this.selectedRows });
+      this.$emit("update-selected-rows", {
+        selectedRows: this.selectedRows.map((el) => el.id),
+      });
     },
 
     updateCheckedRows({ value }) {
@@ -167,7 +225,9 @@ export default {
       } else {
         this.selectedRows = [...this.selectedRows, value];
       }
-      this.$emit("update-selected-rows", { selectedRows: this.selectedRows });
+      this.$emit("update-selected-rows", {
+        selectedRows: this.selectedRows.map((el) => el.id),
+      });
     },
 
     updateSort(value) {
@@ -180,7 +240,7 @@ export default {
 };
 </script>
 <template>
-  <div class="w-100">
+  <div ref="tableContainer" class="w-100">
     <slot v-if="isLoading" name="loading-state">
       <Loading />
     </slot>
@@ -189,15 +249,16 @@ export default {
     </slot>
 
     <div v-else class="w-100 radius-8 bg-base-white overflow-x-auto primary-scroll hidden-scroll table-container">
-      <Header v-if="mergedOptions.showHeader" :cells="sortedCells" :is-mobile-view="isMobileView"
-        :is-select-all-checked="isSelectAllChecked" :options="mergedOptions" :sort-direction="sortDirection"
-        :sort-metric="sortMetric" @update-checkbox="toggleSelectAll" @update-sort="updateSort">
+      <Header v-if="mergedOptions.showHeader" :cells="modifiedCells" :is-mobile-view="isMobileView"
+        :is-select-all-checked="isSelectAllChecked" :disabled="!enabledContent.length" :options="mergedOptions"
+        :sort-direction="sortDirection" :sort-metric="sortMetric" @update-checkbox="toggleSelectAll"
+        @update-sort="updateSort">
         <template #select-all-checkbox>
           <slot name="select-all-checkbox" />
         </template>
       </Header>
 
-      <Body :cells="sortedCells" :content="content" :is-mobile-view="isMobileView" :options="mergedOptions"
+      <Body :cells="modifiedCells" :content="content" :is-mobile-view="isMobileView" :options="mergedOptions"
         :selected-rows="selectedRows" @fetch-collapsed-data="fetchCollapsedData" @entity-clicked="entityClicked"
         @update-checked-rows="updateCheckedRows">
         <template #checkbox>
@@ -217,15 +278,21 @@ export default {
         </template>
       </Body>
     </div>
-    <slot v-if="options.showActionGroupAlert" name="bulk-actions-alert">
+    <slot v-if="options.showActionGroupAlert" :deselect-all="deselectAll" name="bulk-actions-alert">
       <transition name="fadeUp">
-        <ActionsGroupAlert v-if="selectedRows.length > 1 && actions.length" :actions="actions"
-          :selected-rows="selectedRows" @deselect-all="deselectAll" />
+        <ActionsGroupAlert v-if="selectedRows.length >= 1 && actions.length" :actions="actions"
+          :selected-rows="selectedRows" @entity-clicked="entityClicked" @deselect-all="deselectAll"
+          @update-checked-rows="updateCheckedRows">
+          <template #group-actions-item="{ action, deselectValue, innerEntityClicked }">
+            <slot :action="action" :deselect-value="deselectValue" :entity-clicked="innerEntityClicked"
+              name="group-actions-item" />
+          </template>
+        </ActionsGroupAlert>
       </transition>
     </slot>
   </div>
 </template>
-<style lang="sass" scoped>
+<style lang="sass">
 .table-container
   border: 1px solid var(--neutral-200)
 </style>
