@@ -1,6 +1,5 @@
 <script>
-import { defineAsyncComponent } from "vue";
-import { getCellWidth, getCellMinWidth } from "../../utils";
+import { defineAsyncComponent } from 'vue'
 import Checkbox from "../../components/Checkbox.vue";
 import ArrowDown from "../../assets/icons/ArrowDown.vue";
 import { cellTypes } from "../../config";
@@ -9,7 +8,7 @@ export default {
   components: {
     ArrowDown,
     Checkbox,
-    FallBackCell: defineAsyncComponent(() => import("../cell-types/FallBack.vue")),
+    FallBackCell: () => defineAsyncComponent(() => import("../cell-types/FallBack.vue")),
   },
 
   props: {
@@ -44,7 +43,9 @@ export default {
       if (this.isChecked) {
         return "var(--neutral-100)";
       }
-      return "var(--base-white)";
+      return this.record.isHighlighted
+        ? this.options.highlightColor
+        : "var(--base-white)";
     },
     displayedCells() {
       return this.cells.slice(1, -1);
@@ -58,28 +59,24 @@ export default {
   },
 
   methods: {
-    calculateCellWidth(cell) {
-      return getCellWidth(this.cells, cell);
-    },
-
-    calculateCellMinWidth(cell) {
-      return getCellMinWidth(cell);
-    },
-
     toggleCollapse() {
       this.isCollapsed = !this.isCollapsed;
       if (this.isCollapsed) this.$emit("fetch-collapsed-data", { id: this.record.id });
     },
 
-    entityClicked({ event, actionId }) {
-      this.$emit("entity-clicked", event, {
-        actionId,
-        recordId: this.record.id,
-      });
+    entityClicked({ event, actionId, params }) {
+      this.$emit(
+        "entity-clicked",
+        event,
+        {
+          actionId,
+          recordId: this.record.id,
+        },
+        params,
+      );
     },
 
     updateCheckedRows(value) {
-      console.log(value)
       this.$emit("update-checked-rows", { value });
     },
   },
@@ -99,8 +96,9 @@ export default {
             'fixed-table-cell first-fixed-cell p-l-18 p-r-9':
               options.isFirstColumnFixed,
           }" :style="{
-              width: calculateCellWidth(firstCell),
-              minWidth: calculateCellMinWidth(firstCell),
+              width: firstCell.style.width + 'px',
+              minWidth: firstCell.style.minWidth + 'px',
+              maxWidth: firstCell.style.maxWidth + 'px',
             }">
             <slot v-if="options.hasCheckbox" name="checkbox">
               <Checkbox :is-checked="isChecked" :value="record.id" :disabled="record.disabled"
@@ -124,8 +122,9 @@ export default {
           <!-- Remaining cells -->
 
           <div v-for="cell in displayedCells" :key="cell.id" class="p-x-9 p-y-12" :style="{
-            width: calculateCellWidth(cell),
-            minWidth: calculateCellMinWidth(cell),
+            width: cell.style.width + 'px',
+            minWidth: cell.style.minWidth + 'px',
+            maxWidth: cell.style.maxWidth + 'px',
           }">
             <div class="d-flex align-items-center w-100">
               <component :is="types[cell.dataType] || cell.component" v-if="Object.keys(types).includes(cell.dataType)"
@@ -141,8 +140,9 @@ export default {
             'fixed-table-cell last-fixed-cell p-l-18 p-r-9':
               options.isLastColumnFixed,
           }" :style="{
-              width: calculateCellWidth(lastCell),
-              minWidth: calculateCellMinWidth(lastCell),
+              width: lastCell.style.width + 'px',
+              minWidth: lastCell.style.minWidth + 'px',
+              maxWidth: lastCell.style.maxWidth + 'px',
             }">
             <div class="d-flex align-items-center w-100">
               <template v-if="!lastCell.hasPositionedContent">
