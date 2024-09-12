@@ -1,5 +1,4 @@
 <script>
-  import { getCellWidth, getCellMinWidth } from "../utils";
   import Cell from "./Cell.vue";
   import SelectAllCheckbox from "../components/Checkbox.vue";
 
@@ -22,6 +21,13 @@
         required: false,
         default: false,
       },
+
+      disabled: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
+
       sortDirection: {
         type: String,
         required: false,
@@ -44,14 +50,14 @@
       displayedCells() {
         return this.isMobileView ? [] : this.cells.slice(1, -1);
       },
+      firstCell() {
+        return this.cells[0];
+      },
+      lastCell() {
+        return this.cells[this.cells.length - 1];
+      },
     },
     methods: {
-      calculateCellWidth(cell) {
-        return getCellWidth(this.cells, cell);
-      },
-      calculateCellMinWidth(cell) {
-        return getCellMinWidth(cell);
-      },
       updateCheckbox(value) {
         this.$emit("update-checkbox", { value });
       },
@@ -80,20 +86,22 @@
               'fixed-table-cell first-fixed-cell p-l-18'
           "
           :style="{
-            width: calculateCellWidth(cells[0]),
-            minWidth: calculateCellMinWidth(cells[0]),
+            width: firstCell.style.width + 'px',
+            minWidth: firstCell.style.minWidth + 'px',
+            maxWidth: firstCell.style.maxWidth + 'px',
           }"
         >
           <slot v-if="options.canSelectAllRecords">
             <SelectAllCheckbox
               :class="isMobileView && 'p-l-21'"
               :is-checked="isSelectAllChecked"
+              :disabled="disabled"
               @update-checkbox="updateCheckbox"
             />
           </slot>
           <Cell
             class="p-x-9 p-y-12"
-            :cell="cells[0]"
+            :cell="firstCell"
             :options="options"
             :sort-direction="sortDirection"
             :sort-metric="sortMetric"
@@ -107,8 +115,9 @@
           :key="cell.id"
           class="p-x-9 p-y-12"
           :style="{
-            width: calculateCellWidth(cell),
-            minWidth: calculateCellMinWidth(cell),
+            width: cell.style.width + 'px',
+            minWidth: cell.style.minWidth + 'px',
+            maxWidth: cell.style.maxWidth + 'px',
           }"
         >
           <Cell
@@ -128,13 +137,14 @@
             'fixed-table-cell last-fixed-cell': options.isLastColumnFixed,
           }"
           :style="{
-            width: calculateCellWidth(cells[cells.length - 1]),
-            minWidth: calculateCellMinWidth(cells[cells.length - 1]),
+            width: lastCell.style.width + 'px',
+            minWidth: lastCell.style.minWidth + 'px',
+            maxWidth: lastCell.style.maxWidth + 'px',
           }"
         >
           <Cell
             class="p-x-9 p-y-12"
-            :cell="cells[cells.length - 1]"
+            :cell="lastCell"
             :options="options"
             :sort-direction="sortDirection"
             :sort-metric="sortMetric"
