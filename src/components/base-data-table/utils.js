@@ -18,7 +18,5 @@ function formatNumber({
 }
 
 export {
-  getCellWidth,
-  getCellMinWidth,
   formatNumber
 }
