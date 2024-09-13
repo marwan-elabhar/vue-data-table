@@ -25,7 +25,7 @@ export default {
   <div class="shadow-7 p-y-24 p-x-42 alert-container d-flex align-items-center justify-content-between">
     <div class="d-flex align-items-center">
       <span class="p-small-medium text-base-white m-r-6">{{
-        selectedRowsLength
+        selectedRows.length
         }}</span>
       <span class="p-small-medium selected-label">
         Selected
