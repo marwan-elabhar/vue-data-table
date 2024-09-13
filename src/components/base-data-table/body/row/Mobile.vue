@@ -2,7 +2,6 @@
   import { cellTypes } from "../../config";
   import MobileCollapseIcon from "../../assets/icons/MobileCollapse.vue";
   import Checkbox from "../../components/Checkbox.vue";
-  import { getCellWidth, getCellMinWidth } from "../../utils";
 
   export default {
     components: {
@@ -58,13 +57,6 @@
           actionId,
           recordId: this.record.id,
         });
-      },
-      calculateCellWidth(cell) {
-        return getCellWidth(this.cells, cell);
-      },
-
-      calculateCellMinWidth(cell) {
-        return getCellMinWidth(cell);
       },
       toggleCollapsedCells() {
         this.showCollapsedCells = !this.showCollapsedCells;
