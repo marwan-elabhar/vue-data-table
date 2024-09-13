@@ -1,5 +1,7 @@
 <script>
 import ListItem from "./ListItem.vue";
+import { useCellPathValue } from "../useCellPathValue";
+
 
 export default {
   props: {
@@ -22,13 +24,19 @@ export default {
   data() {
     return {};
   },
+  computed: {
+    cellValue() {
+      return useCellPathValue({ cell: this.cell, record: this.record })
+    },
+  }
+
 };
 </script>
 <template>
   <div class="w-100 d-flex flex-wrap">
-    <span v-if="record[cell.id] && !record[cell.id].length">---</span>
-    <template v-if="record[cell.id] && record[cell.id].length">
-      <ListItem v-for="item in record[cell.id]" :key="item" class="m-6" :content="item" />
+    <span v-if="cellValue && !cellValue.length">---</span>
+    <template v-if="cellValue && cellValue.length">
+      <ListItem v-for="item in cellValue" :key="item" class="m-6" :content="item" />
     </template>
   </div>
 </template>

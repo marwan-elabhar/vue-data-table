@@ -1,5 +1,6 @@
 <script>
 import Tooltip from "../../components/Tooltip.vue";
+import { useCellPathValue } from "./useCellPathValue";
 
 export default {
   props: {
@@ -22,17 +23,20 @@ export default {
     return {};
   },
   computed: {
+    cellValue() {
+      return useCellPathValue({ cell: this.cell, record: this.record })
+    },
     currencyCode() {
       return this.$store.state.User.user.settings.currency.code;
     },
     isValidNumber() {
-      return typeof +this.record[this.cell.id] === "number";
+      return typeof +this.cellValue === "number";
     },
     showNumberTooltip() {
       return (
         (this.cell.notation === "compact" || !this.cell.notation)
-        && this.record[this.cell.id]
-        && this.record[this.cell.id] > 1000
+        && this.cellValue
+        && this.cellValue > 1000
       );
     },
   },
@@ -49,9 +53,9 @@ export default {
         number:
           this.cell.convertCurrency || !("convertCurrency" in this.cell)
             ? this.$root.convertCurrencyRate({
-              value: this.record[this.cell.id],
+              value: this.cellValue,
             })
-            : this.record[this.cell.id],
+            : this.cellValue,
         currency:
           this.cell.convertCurrency || !("convertCurrency" in this.cell)
             ? this.currencyCode

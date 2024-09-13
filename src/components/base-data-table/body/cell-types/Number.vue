@@ -1,6 +1,7 @@
 <script>
 import Tooltip from "../../components/Tooltip.vue";
 import { formatNumber } from "../../utils";
+import { useCellPathValue } from "./useCellPathValue";
 
 export default {
   props: {
@@ -23,14 +24,17 @@ export default {
     return {};
   },
   computed: {
+    cellValue() {
+      return useCellPathValue({cell: this.cell, record: this.record})
+    },  
     isValidNumber() {
       return typeof +this.cellValue === "number";
     },
     showNumberTooltip() {
       return (
         (this.cell.notation === "compact" || !this.cell.notation)
-        && this.record[this.cell.id]
-        && this.record[this.cell.id] > 1000
+        && this.cellValue
+        && this.cellValue > 1000
       );
     },
   },
@@ -44,7 +48,7 @@ export default {
     },
     formatValue({ notation }) {
       return formatNumber({
-        number: this.record[this.cell.id],
+        number: this.cellValue,
         notation,
       })
     }

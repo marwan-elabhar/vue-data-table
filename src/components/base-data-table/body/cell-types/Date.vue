@@ -1,4 +1,5 @@
 <script>
+import { useCellPathValue } from "./useCellPathValue";
 
 export default {
   props: {
@@ -18,6 +19,11 @@ export default {
 
   data() {
     return {};
+  },
+  computed: {
+    cellValue() {
+      return useCellPathValue({ cell: this.cell, record: this.record })
+    },
   },
   methods: {
     entityClicked({ event }) {
@@ -78,8 +84,8 @@ export default {
 };
 </script>
 <template>
-  <span v-if="record[cell.id]" class="p-base-medium string-content-container"
+  <span v-if="cellValue" class="p-base-medium string-content-container"
     :class="[cell.isClickable ? 'cursor-pointer clickable-cell' : '']" @click="entityClicked($event)">{{
-      formatDate(record[cell.id]) }}</span>
+      formatDate(cellValue) }}</span>
   <span v-else>---</span>
 </template>

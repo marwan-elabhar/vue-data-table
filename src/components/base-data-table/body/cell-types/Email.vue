@@ -1,4 +1,6 @@
 <script>
+import { useCellPathValue } from "./useCellPathValue";
+
 
 export default {
   props: {
@@ -18,6 +20,11 @@ export default {
   data() {
     return {};
   },
+  computed: {
+    cellValue() {
+      return useCellPathValue({ cell: this.cell, record: this.record })
+    },
+  },
   methods: {
     entityClicked({ event }) {
       if (!this.cell.isClickable) return;
@@ -30,9 +37,9 @@ export default {
 };
 </script>
 <template>
-  <a v-if="record[cell.id]" :href="`mailto:${record[cell.id]}`"
+  <a v-if="cellValue" :href="`mailto:${cellValue}`"
     class="p-base-medium cursor-pointer clickable-cell string-content-container" @click="entityClicked($event)">
-    {{ record[cell.id] }}
+    {{ cellValue }}
   </a>
   <span v-else>---</span>
 </template>

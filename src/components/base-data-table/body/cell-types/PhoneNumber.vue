@@ -1,8 +1,10 @@
 <script>
-  import MissingContact from "../../assets/icons/MissingContact.vue";
+import MissingContact from "../../assets/icons/MissingContact.vue";
+import { useCellPathValue } from "./useCellPathValue";
 
-  export default {
-    props: {
+
+export default {
+  props: {
     cell: {
       required: true,
       type: Object,
@@ -16,40 +18,35 @@
       required: true,
     },
   },
-    components: {
-      MissingContact,
+  components: {
+    MissingContact,
+  },
+  data() {
+    return {};
+  },
+  computed: {
+    cellValue() {
+      return useCellPathValue({ cell: this.cell, record: this.record })
     },
-    data() {
-      return {};
-    },
-
-    methods: {
-      entityClicked({ event }) {
+  },
+  methods: {
+    entityClicked({ event }) {
       if (!this.cell.isClickable) return;
       this.$emit("entity-clicked", {
         event,
         actionId: this.cell.actionId,
       });
     },
-    },
-  };
+  },
+};
 </script>
 <template>
-  <div
-    v-if="record[cell.id]"
-    :class="[cell.isClickable ? 'cursor-pointer clickable-cell' : '']"
-    class="p-base-medium d-flex align-items-center gap-3"
-    @click="entityClicked"
-  >
-    <img
-      v-if="record[cell.id].countryFlag"
-      :src="record[cell.id].countryFlag"
-      alt="country-flag"
-      width="20"
-    >
+  <div v-if="cellValue" :class="[cell.isClickable ? 'cursor-pointer clickable-cell' : '']"
+    class="p-base-medium d-flex align-items-center gap-3" @click="entityClicked">
+    <img v-if="cellValue.countryFlag" :src="cellValue.countryFlag" alt="country-flag" width="20">
 
     <span>
-      {{ record[cell.id].value || record[cell.id] }}
+      {{ cellValue.value || cellValue }}
     </span>
   </div>
   <MissingContact v-else />

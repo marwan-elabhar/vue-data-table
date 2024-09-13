@@ -1,5 +1,7 @@
 <script>
 import { formatNumber } from "../../utils";
+import { useCellPathValue } from "./useCellPathValue";
+
 
 export default {
   props: {
@@ -21,14 +23,17 @@ export default {
   },
 
   computed: {
+    cellValue() {
+      return useCellPathValue({ cell: this.cell, record: this.record })
+    },
     isValidNumber() {
-      return typeof +this.record[this.cell.id] === "number";
+      return typeof +this.cellValue === "number";
     },
   },
   methods: {
     formatValue() {
       return formatNumber({
-        number: this.record[this.cell.id],
+        number: this.cellValue,
       })
     }
   }

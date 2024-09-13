@@ -1,5 +1,7 @@
 <script>
 import ImageContainer from "../../components/ImageContainer.vue";
+import { useCellPathValue } from "./useCellPathValue";
+
 
 export default {
   props: {
@@ -21,6 +23,11 @@ export default {
   data() {
     return {};
   },
+  computed: {
+    cellValue() {
+      return useCellPathValue({ cell: this.cell, record: this.record })
+    },
+  },
   methods: {
     entityClicked({ event }) {
       if (!this.cell.isClickable) return;
@@ -33,6 +40,6 @@ export default {
 };
 </script>
 <template>
-  <ImageContainer v-if="record[cell.id]" width="30" :src="record[cell.id]" @click="entityClicked($event)" />
+  <ImageContainer v-if="cellValue" width="30" :src="cellValue" @click="entityClicked($event)" />
   <span v-else>---</span>
 </template>

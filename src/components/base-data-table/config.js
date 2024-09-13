@@ -45,6 +45,11 @@ const cellProperties = [
     required: true,
   },
   {
+    name: "valuePath", // to get the value based on an object path ex(campaign.name)
+    type: "string",
+    required: false,
+  },
+  {
     name: "dataType", // Valid values: (string, date, email, image, phoneNumber, list, currency, percentage, number, component)
     type: "string",
     required: true,
