@@ -108,7 +108,7 @@ export default {
             <span v-if="options.isCollapsable">
               <ArrowDown :style="{
                 transform: isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)',
-              }" color="var(--primary-500)" width="30" height="10" class="cursor-pointer" @click="toggleCollapse" />
+              }" color="var(--primary-500)" width="30" height="10" class="arrow-transition cursor-pointer" @click="toggleCollapse" />
             </span>
 
             <div class="d-flex align-items-center w-100">
@@ -181,4 +181,6 @@ export default {
 .collapsed-section
   max-height: max-content
   background: var(--neutral-100)
+.arrow-transition
+  transition: transform 0.3s ease  
 </style>
