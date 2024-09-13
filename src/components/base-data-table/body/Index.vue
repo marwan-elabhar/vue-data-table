@@ -37,7 +37,7 @@ import MobileRow from "./row/Mobile.vue"
 
     methods: {
       isRowChecked(id) {
-        return this.selectedRows.includes(id);
+        return this.selectedRows.some((row) => row.id === id);
       },
 
       entityClicked(event, entity) {
