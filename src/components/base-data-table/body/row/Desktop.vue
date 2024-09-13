@@ -163,8 +163,8 @@ export default {
 
         <div v-if="options.isCollapsable">
           <transition name="animate-height">
-            <div v-if="isCollapsed" class="p-18 collapsed-section">
-              <slot name="row-collapsed-data" :record-data="record" />
+            <div v-if="isCollapsed" class="collapsed-section">
+              <slot name="row-collapsed-data" :record="record" />
             </div>
           </transition>
         </div>
