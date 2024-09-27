@@ -249,7 +249,7 @@ export default {
     </slot>
 
     <div v-else class="w-100 radius-8 bg-base-white overflow-x-auto primary-scroll hidden-scroll table-container">
-      <Header v-if="mergedOptions.showHeader" :cells="modifiedCells" :is-mobile-view="isMobileView"
+      <Header v-if="mergedOptions.showHeader" :cells="modifiedCells" :is-mobile-view="isMobileView && !options.disableMobileView"
         :is-select-all-checked="isSelectAllChecked" :disabled="!enabledContent.length" :options="mergedOptions"
         :sort-direction="sortDirection" :sort-metric="sortMetric" @update-checkbox="toggleSelectAll"
         @update-sort="updateSort">
@@ -258,7 +258,7 @@ export default {
         </template>
       </Header>
 
-      <Body :cells="modifiedCells" :content="content" :is-mobile-view="isMobileView" :options="mergedOptions"
+      <Body :cells="modifiedCells" :content="content" :is-mobile-view="isMobileView && !options.disableMobileView" :options="mergedOptions"
         :selected-rows="selectedRows" @fetch-collapsed-data="fetchCollapsedData" @entity-clicked="entityClicked"
         @update-checked-rows="updateCheckedRows">
         <template #checkbox>

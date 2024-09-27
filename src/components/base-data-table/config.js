@@ -8,6 +8,7 @@ const defaultOptions = {
   showActionGroupAlert: false, // hasCheckbox has to be true in order for this to work
   isFirstColumnFixed: false,
   isLastColumnFixed: false,
+  disableMobileView: false,
   defaultCellMinWidth: 100,
 }
 
