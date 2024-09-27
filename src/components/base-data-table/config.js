@@ -94,6 +94,16 @@ const cellProperties = [
     required: false,
   },
   {
+    name: "numberOptions", // Expected value: { notation (string), minDecimals (number), maxDecimals (number) }
+    type: "object",
+    required: false,
+  },
+  {
+    name: "numberFormatter",
+    type: "function",
+    required: false,
+  },
+  {
     name: "currencyFormatter",
     type: "function",
     required: false,

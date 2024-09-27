@@ -1,6 +1,6 @@
 <script>
 import Tooltip from "../../components/Tooltip.vue";
-import { formatNumber } from "../../utils";
+import { formatNumber } from "./utils";
 import { useCellPathValue } from "./useCellPathValue";
 
 export default {
@@ -25,14 +25,14 @@ export default {
   },
   computed: {
     cellValue() {
-      return useCellPathValue({cell: this.cell, record: this.record})
-    },  
+      return useCellPathValue({ cell: this.cell, record: this.record })
+    },
     isValidNumber() {
       return typeof +this.cellValue === "number";
     },
     showNumberTooltip() {
       return (
-        (this.cell.notation === "compact" || !this.cell.notation)
+        (this.cell?.numberOptions?.notation === "compact" || !this.cell?.numberOptions?.notation)
         && this.cellValue
         && this.cellValue > 1000
       );
@@ -46,10 +46,15 @@ export default {
         actionId: this.cell.actionId,
       });
     },
-    formatValue({ notation }) {
+    formatValue({ notation = '' }) {
+      if (this.cell.numberFormatter) {
+        return this.cell.numberFormatter(this.cellValue)
+      }
       return formatNumber({
         number: this.cellValue,
-        notation,
+        notation: notation || this.cell?.numberOptions?.notation || 'compact',
+        minDecimals: this.cell?.currencyOptions?.minDecimals || 0,
+        maxDecimals: this.cell?.currencyOptions?.maxDecimals || 2
       })
     }
   }
@@ -58,7 +63,7 @@ export default {
 <template>
   <div class="w-100 d-flex align-items-center p-base-medium text-neutral-700">
     <span v-if="isValidNumber" :class="[cell.isClickable ? 'cursor-pointer clickable-cell' : '']"
-      @click="entityClicked($event)">{{ formatValue({ notation: cell.notation || 'compact' })
+      @click="entityClicked($event)">{{ formatValue({})
 
       }}</span>
     <span v-else>---</span>
