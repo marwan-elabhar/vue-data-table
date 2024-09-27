@@ -53,11 +53,6 @@ const cellProperties = [
     required: true,
   },
   {
-    name: "isPrimary",
-    type: "boolean",
-    required: false,
-  },
-  {
     name: "sortKey",
     type: "string",
     required: false,
@@ -93,12 +88,6 @@ const cellProperties = [
     required: false,
   },
   {
-    // To be set to true if the value is needed to be converted to the current currency or false if not. Default: true
-    name: "convertCurrency",
-    type: "boolean",
-    required: false,
-  },
-  {
     name: "notation", // Used for number formatting. Default: compact
     type: "string",
     required: false,
@@ -114,7 +103,7 @@ const cellProperties = [
     required: false,
   },
   {
-    name: "customDateFormat",
+    name: "dateFormatter",
     type: "function",
     required: false,
   },
