@@ -89,8 +89,13 @@ const cellProperties = [
     required: false,
   },
   {
-    name: "notation", // Used for number formatting. Default: compact
-    type: "string",
+    name: "currencyOptions", // Expected value: { notation (string), currency (string), minDecimals (number), maxDecimals (number) }
+    type: "object",
+    required: false,
+  },
+  {
+    name: "currencyFormatter",
+    type: "function",
     required: false,
   },
   {
@@ -108,6 +113,7 @@ const cellProperties = [
     type: "function",
     required: false,
   },
+
   {
     name: "hasPositionedContent", // Used in the last cell if last column is fixed and the cell includes positioned content
     type: "boolean",

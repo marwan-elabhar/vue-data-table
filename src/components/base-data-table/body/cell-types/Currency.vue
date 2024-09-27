@@ -1,6 +1,7 @@
 <script>
 import Tooltip from "../../components/Tooltip.vue";
 import { useCellPathValue } from "./useCellPathValue";
+import { formatNumber } from "./utils";
 
 export default {
   props: {
@@ -26,15 +27,12 @@ export default {
     cellValue() {
       return useCellPathValue({ cell: this.cell, record: this.record })
     },
-    currencyCode() {
-      return this.$store.state.User.user.settings.currency.code;
-    },
     isValidNumber() {
       return typeof +this.cellValue === "number";
     },
     showNumberTooltip() {
       return (
-        (this.cell.notation === "compact" || !this.cell.notation)
+        (this.cell?.currencyOptions?.notation === "compact" || !this.cell?.currencyOptions?.notation)
         && this.cellValue
         && this.cellValue > 1000
       );
@@ -48,21 +46,19 @@ export default {
         actionId: this.cell.actionId,
       });
     },
-    getCellValue({ notation }) {
-      return this.$root.formatNumber({
-        number:
-          this.cell.convertCurrency || !("convertCurrency" in this.cell)
-            ? this.$root.convertCurrencyRate({
-              value: this.cellValue,
-            })
-            : this.cellValue,
-        currency:
-          this.cell.convertCurrency || !("convertCurrency" in this.cell)
-            ? this.currencyCode
-            : "USD",
-        notation,
-        style: "currency",
-      });
+    getCellValue({ notation = '' }) {
+      if (this.cell.currencyFormatter) {
+        return this.cell.currencyFormatter(this.cellValue)
+      }
+      return formatNumber({
+        number: this.cellValue,
+        style: 'currency',
+        currency: this.cell?.currencyOptions?.code || 'USD',
+        locale: this.cell?.currencyOptions?.locale || "en-US",
+        notation: notation || this.cell?.currencyOptions?.notation || 'compact',
+        minDecimals: this.cell?.currencyOptions?.minDecimals || 0,
+        maxDecimals: this.cell?.currencyOptions?.maxDecimals || 2
+      })
     },
   },
 };
@@ -70,7 +66,7 @@ export default {
 <template>
   <div class="w-100 d-flex align-items-center p-base-medium p-relative text-neutral-700">
     <span v-if="isValidNumber" :class="[cell.isClickable ? 'cursor-pointer clickable-cell' : '']"
-      @click="entityClicked($event)">{{ getCellValue({ notation: cell.notation || "compact" }) }}</span>
+      @click="entityClicked($event)">{{ getCellValue({}) }}</span>
     <span v-else>---</span>
     <Tooltip v-if="showNumberTooltip" class="m-x-3 m-t-3" :tooltip-content="getCellValue({ notation: 'standard' })" />
   </div>
