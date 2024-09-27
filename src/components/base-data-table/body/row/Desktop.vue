@@ -173,7 +173,6 @@ export default {
   </div>
 </template>
 <style scoped lang='sass'>
-@import "../../styles"
 .row-border
   border-top: 2px solid var(--neutral-200)
 .row-container

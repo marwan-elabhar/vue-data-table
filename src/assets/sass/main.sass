@@ -1,6 +1,4 @@
-@import "./typography/typography"
 @import "./grid"
-@import './buttons/buttons'
 @import "./spaces/spaces"
 @import "./keyframes"
 @import "./utils"
@@ -11,8 +9,6 @@
     margin: 0
     padding: 0
 
-*::before, *::after
-    font-family: primary-medium, secondary-semi-bold
 
 .w-50
     width: 50% !important
@@ -31,10 +27,12 @@ body, html
     padding: 0
     background-color: var(--neutral-100)
     scroll-behavior: smooth
+    font-family: 'Arial', sans-serif
+
 
     [dir=rtl] &
         text-align: right
-//padding-left: 90px
+
 
 #chartjs-tooltip
     outline: 2px solid red

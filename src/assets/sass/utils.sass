@@ -204,15 +204,21 @@ html
     animation: shimmer 2s infinite linear
     background: linear-gradient(to right, var(--neutral-50) 4%, var(--neutral-100) 25%, var(--neutral-50) 36%)
     background-size: 1000px 100%
+    
+.fixed-table-cell
+  background: var(--base-white)
+  box-shadow: 1px 10px 35px var(--base-black-01)
+  align-self: stretch
+  position: sticky
+  z-index: 2
+  min-height: 70px
 
-.fixed-cell
-    position: sticky
-    left: 0
-    background: var(--base-white) !important
-    box-shadow: 1px 10px 35px rgba(0, 0, 0, 0.1)
-    z-index: 2
-    [dir = rtl] &
-        right: 0
+.first-fixed-cell
+  left: 0
+
+.last-fixed-cell 
+  right: 0
+
 
 .text-italic
     font-style: italic

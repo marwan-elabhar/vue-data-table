@@ -157,7 +157,6 @@
   </div>
 </template>
 <style scoped lang='sass'>
-@import "../styles"
 .header-container
   min-height: 70px
 </style>
