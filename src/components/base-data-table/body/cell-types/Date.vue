@@ -33,26 +33,9 @@ export default {
         actionId: this.cell.actionId,
       });
     },
-    getMonthName(monthIndex) {
-      const months = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ];
-      return months[monthIndex] || "Invalid month";
-    },
     formatDate(value) {
-      if (this.cell.customDateFormat) {
-        return this.cell.customDateFormat(value);
+      if (this.cell.dateFormatter) {
+        return this.cell.dateFormatter(value);
       }
       if (
         !this.cell.customDateFormat
@@ -72,13 +55,7 @@ export default {
       return formatter.format(date);
     },
     getDefaultDateFormat(value) {
-      const date = new Date(value);
-      const offset = date.getTimezoneOffset();
-      const differenceInMinutes = 60000;
-      const localDate = new Date(date.getTime() + offset * differenceInMinutes);
-      return `${this.getMonthName(
-        localDate.getMonth(),
-      )} ${localDate.getDate()}, ${localDate.getFullYear()}`;
+      return new Date(value).toISOString().split('T')[0];
     },
   },
 };
