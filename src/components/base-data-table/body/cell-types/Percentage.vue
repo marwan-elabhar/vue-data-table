@@ -1,5 +1,5 @@
 <script>
-import { formatNumber } from "../../utils";
+import { formatNumber } from "./utils";
 import { useCellPathValue } from "./useCellPathValue";
 
 
