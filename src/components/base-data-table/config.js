@@ -20,8 +20,6 @@ const cellTypes = {
   email: defineAsyncComponent(() => import("./body/cell-types/Email.vue")),
   // Expected value: String
   image: defineAsyncComponent(() => import("./body/cell-types/Image.vue")),
-  // Expected value: Object. Fields: value (required), countryFlag(optional)
-  phoneNumber: defineAsyncComponent(() => import("./body/cell-types/PhoneNumber.vue")),
   // Expected value: Array
   list: defineAsyncComponent(() => import("./body/cell-types/list/Index.vue")),
   // Expected value: Object. Fields: originalValue (required), currencyRate(required), prefix(optional), suffix(optional)
