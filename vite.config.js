@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
-
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
@@ -12,5 +12,20 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
+  build: {
+    lib: {
+      entry: resolve(__dirname, "src/main.js"),
+      name: "v-data-table",
+      fileName: (format) =>  `v-data-table-${format}.js`
+    }
+  },
+  rollupOptions: {
+    external: ['vue'],
+    output: {
+      globals: {
+        vue: 'Vue',
+      },
+    },
+  },
 })

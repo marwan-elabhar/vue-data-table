@@ -1,8 +1,14 @@
 {
   "name": "data-table",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
   "type": "module",
+  "main": "dist/v-data-table.umd.js",
+  "module": "dist/v-data-table.es.js",
+  "files": [
+    "dist",
+    "main.js",
+    "components/v-data-table/Index.vue"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
