@@ -1,0 +1,126 @@
+html
+    scrollbar-face-color: var(--neutral-400) !important
+    scrollbar-shadow-color: var(--neutral-200) !important
+    scrollbar-highlight-color: var(--neutral-200) !important
+
+::-webkit-scrollbar
+    width: 10px !important
+
+::-webkit-scrollbar-track
+    background: var(--neutral-200) !important
+    border-radius: 10px !important
+
+::-webkit-scrollbar-thumb
+    background: var(--neutral-200) !important
+    border-radius: 10px !important
+
+::-webkit-scrollbar-thumb:hover
+    background: var(--neutral-400) !important
+
+.hidden-scroll
+    -ms-overflow-style: none !important
+    scrollbar-width: none !important
+.hidden-scroll::-webkit-scrollbar
+    width: 0 !important
+    display: none !important
+.hidden-scroll::-webkit-scrollbar-track
+    background: transparent !important
+.hidden-scroll::-webkit-scrollbar-thumb
+    background: transparent !important
+.hidden-scroll::-webkit-scrollbar-thumb:hover
+    background: transparent !important
+
+.overflow-x-auto
+    overflow-x: auto
+
+.primary-scroll
+    border-radius: 2px !important
+.primary-scroll::-webkit-scrollbar
+    width: 2px !important
+    border-radius: 2px !important
+
+.primary-scroll::-webkit-scrollbar-track
+    background: var(--neutral-200) !important
+    border-radius: 2px !important
+
+.primary-scroll::-webkit-scrollbar-thumb
+    background: var(--neutral-200) !important
+    border: 3px solid var(--neutral-200)
+    border-radius: 2px !important
+
+.text-right
+    text-align: right !important
+
+.radius-4
+    border-radius: 4px !important
+.radius-6
+    border-radius: 6px !important
+.radius-8
+    border-radius: 8px !important
+.radius-10
+    border-radius: 10px !important
+
+.shadow-1
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15)
+.shadow-2
+    box-shadow: 0 6.25px 20px rgba(0, 0, 0, 0.125)
+.shadow-3
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.11)
+.shadow-4
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12)
+.shadow-5
+    box-shadow: 0 15px 60px rgba(0, 0, 0, 0.12)
+.shadow-6
+    box-shadow: 0 17.5px 70px rgba(0, 0, 0, 0.12)
+.shadow-7
+    box-shadow: 0 35px 90px rgba(0, 0, 0, 0.135)
+
+/* cursor classes*/
+.cursor-pointer
+    cursor: pointer !important
+
+.string-content-container
+    text-overflow: ellipsis
+    overflow: hidden
+.nowrap-white-space
+    white-space: nowrap !important
+
+.p-relative
+    position: relative
+
+.p-absolute
+    position: absolute
+
+.transform-180
+    transform: rotate(180deg) !important
+
+.fixed-table-cell
+    background: var(--base-white)
+    box-shadow: 1px 10px 35px var(--base-black-01)
+    align-self: stretch
+    position: sticky
+    z-index: 2
+    min-height: 70px
+
+.first-fixed-cell
+    left: 0
+
+.last-fixed-cell
+    right: 0
+
+.clickable-cell:hover,
+.clickable-entity:hover
+    color: var(--primary-500)
+
+.w-100
+    width: 100% !important
+    
+.min-w-100
+    min-width: 100%
+
+.user-select-none
+    user-select: none
+
+.btn
+    border: none !important
+    outline: none !important

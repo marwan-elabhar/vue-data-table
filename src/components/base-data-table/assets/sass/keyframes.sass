@@ -1,0 +1,47 @@
+@-moz-keyframes rotate
+  from
+    -moz-transform: rotate(0deg)
+  to
+    -moz-transform: rotate(180deg)
+
+@-webkit-keyframes rotate
+  from
+    -moz-transform: rotate(0deg)
+  to
+    -webkit-transform: rotate(180deg)
+
+@keyframes rotate
+  from
+    -moz-transform: rotate(0deg)
+    transform: rotate(0deg)
+  to
+    -webkit-transform: rotate(180deg)
+    transform: rotate(180deg)
+
+.animate-height-leave-active
+  -webkit-animation: animate-max-height .7s reverse
+  -ms-animation: animate-max-height .7s reverse
+  -o-animation: animate-max-height .7s reverse
+  -moz-animation: animate-max-height .7s reverse
+  animation: animate-max-height .7s reverse
+
+.animate-height-enter-active
+  -webkit-animation: animate-max-height .7s
+  -ms-animation: animate-max-height .7s
+  -o-animation: animate-max-height .7s
+  -moz-animation: animate-max-height .7s
+  animation: animate-max-height .7s
+
+.fadeUp-enter-active
+  transition: all .2s ease-in-out
+.fadeUp-leave-active
+  transition: all .2s ease-in-out
+.fadeUp-enter,
+.fadeUp-leave-to
+  transform: translateY(10px)
+  opacity: 0
+
+
+
+
+
