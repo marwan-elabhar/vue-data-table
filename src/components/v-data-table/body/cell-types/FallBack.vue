@@ -1,6 +1,6 @@
 <script>
   import { cellTypes } from "../../config";
-  import Info from "@/assets/icons/Info.vue";
+  import Info from "../../assets/icons/Info.vue";
 
   export default {
     components: {
