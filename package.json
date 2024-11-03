@@ -4,13 +4,10 @@
   "type": "module",
   "main": "dist/v-data-table.umd.js",
   "module": "dist/v-data-table.es.js",
-  "exports": {
-    ".": "./dist",
-    "./styles.css": "./dist/style.css"
-    },
-    "files": [
-      "dist"
-    ],
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
