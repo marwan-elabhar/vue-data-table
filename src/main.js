@@ -1,7 +1,10 @@
-import '@/components/base-data-table/assets/sass/main.sass'
+import VDataTable from '@/components/v-data-table/Index.vue';
 
-import { createApp } from 'vue'
-import App from './App.vue'
+const VDataTablePlugin = {
+  install(app) {
+    app.component('VDataTable', VDataTable); 
+  }
+};
 
-
-createApp(App).mount('#app')
+export { VDataTable };
+export default VDataTablePlugin;
