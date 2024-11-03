@@ -4,11 +4,13 @@
   "type": "module",
   "main": "dist/v-data-table.umd.js",
   "module": "dist/v-data-table.es.js",
-  "files": [
-    "dist",
-    "src/main.js",
-    "src/components/v-data-table/Index.vue"
-  ],
+  "exports": {
+    ".": "./dist",
+    "./styles.css": "./dist/style.css"
+    },
+    "files": [
+      "dist"
+    ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
