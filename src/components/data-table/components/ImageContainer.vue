@@ -31,7 +31,7 @@
   <img
     :src="src || ''"
     :alt="alt"
-    :onerror="`this.onerror=null;this.src='${require('../assets/images/any-missing-icon.svg')}';`"
+    :onerror="`this.onerror=null;this.src='${require('@/assets/images/any-missing-icon.svg')}';`"
     :width="width"
     :height="width"
   >
