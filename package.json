@@ -6,8 +6,8 @@
   "module": "dist/v-data-table.es.js",
   "files": [
     "dist",
-    "main.js",
-    "components/v-data-table/Index.vue"
+    "src/main.js",
+    "src/components/v-data-table/Index.vue"
   ],
   "scripts": {
     "dev": "vite",
