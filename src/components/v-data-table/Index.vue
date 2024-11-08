@@ -293,6 +293,8 @@ export default {
   </div>
 </template>
 <style lang="sass">
+@import "./assets/sass/main"
+
 .table-container
   border: 1px solid var(--neutral-200)
 </style>
