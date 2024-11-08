@@ -17,15 +17,17 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "src/main.js"),
       name: "v-data-table",
-      fileName: (format) =>  `v-data-table-${format}.js`
-    }
-  },
-  rollupOptions: {
-    external: ['vue'],
-    output: {
-      globals: {
-        vue: 'Vue',
+      fileName: (format) => `v-data-table-${format}.js`
+    },
+    rollupOptions: {
+      external: ['vue'],
+      output: {
+        globals: {
+          vue: 'Vue',
+        },
       },
     },
   },
+  css: { extract: false },
+
 })
