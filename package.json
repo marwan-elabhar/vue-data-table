@@ -2,8 +2,15 @@
   "name": "v-data-table",
   "version": "1.0.0",
   "type": "module",
-  "main": "dist/v-data-table.umd.js",
-  "module": "dist/v-data-table.es.js",
+  "private": false,
+  "keywords": [
+    "vue",
+    "vue3",
+    "vuejs",
+    "data-table"
+  ],
+  "main": "dist/v-data-table-umd.js",
+  "module": "dist/v-data-table-es.js",
   "files": [
     "dist",
     "src"
