@@ -1,7 +1,7 @@
 {
   "name": "vue-table-lite",
   "author": "Marwan El-Abhar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "private": false,
   "keywords": [
@@ -11,7 +11,7 @@
     "library",
     "data-table"
   ],
-  "main": "dist/vue-table-lite.umd.js",
+  "main": "dist/vue-table-lite-umd.js",
   "module": "dist/vue-table-lite-es.js",
   "files": [
     "dist",
