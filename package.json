@@ -1,5 +1,6 @@
 {
   "name": "v-data-table",
+  "author": "Marwan El-Abhar",
   "version": "1.0.0",
   "type": "module",
   "private": false,
@@ -7,6 +8,7 @@
     "vue",
     "vue3",
     "vuejs",
+    "library",
     "data-table"
   ],
   "main": "dist/v-data-table-umd.js",
