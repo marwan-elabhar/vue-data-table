@@ -1,10 +1,10 @@
-import VDataTable from '@/components/v-data-table/Index.vue';
+import VueTableLite from '@/components/vue-table-lite/Index.vue';
 
-const VDataTablePlugin = {
+const VueTableLitePlugin = {
   install(app) {
-    app.component('VDataTable', VDataTable); 
+    app.component('VueTableLite', VueTableLite); 
   }
 };
 
-export { VDataTable };
-export default VDataTablePlugin;
+export { VueTableLite };
+export default VueTableLitePlugin;
