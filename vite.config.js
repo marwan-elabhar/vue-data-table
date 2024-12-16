@@ -16,8 +16,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, "src/main.js"),
-      name: "v-data-table",
-      fileName: (format) => `v-data-table-${format}.js`
+      name: "vue-table-lite",
+      fileName: (format) => `vue-table-lite-${format}.js`
     },
     rollupOptions: {
       external: ['vue'],
